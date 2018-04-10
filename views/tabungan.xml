@@ -1,0 +1,74 @@
+<odoo>
+    <data>
+
+        <!-- explicit list view definition -->    
+        <record model="ir.ui.view" id="siswa_tab_ocb11.tabungan_list">
+        <field name="name">siswa_tab_ocb11_tabungan_list</field>
+        <field name="model">siswa_tab_ocb11.tabungan</field>
+        <field name="arch" type="xml">
+            <tree  >
+            <field name="name"/>
+            <field name="tanggal" />
+            <field name="siswa_id" />
+            <field name="jenis" />
+            <field name="jumlah" />
+            </tree>
+        </field>
+        </record>
+        
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="siswa_tab_ocb11.tabungan_action_window">
+        <field name="name">Tabungan Siswa</field>
+        <field name="res_model">siswa_tab_ocb11.tabungan</field>
+        <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_tabungan_form" model="ir.ui.view">
+            <field name="name">tabungan.ocb11.form</field>
+            <field name="model">siswa_tab_ocb11.tabungan</field>
+            <field name="arch" type="xml">
+                <form string="tabungan" class="o_sale_order">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="tanggal" attrs="{'readonly':[('name', '!=', 'New')]}" />
+                                <field name="siswa_id" domain="[('is_siswa','=',True)]" options="{'no_create_edit': True,'no_open':True}" attrs="{'readonly':[('name', '!=', 'New')]}" />
+                                <field name="induk" />                        
+                                <field name="active_rombel_id" />
+                            </group>
+                            <group>
+                                <field name="jenis" />                        
+                                <field name="jumlah" />                        
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Menu -->
+        <!-- Top menu item -->
+        <menuitem name="Tabungan" id="siswa_tab_ocb11.tabungan_master_menu"/>
+        
+        <!-- menu categories -->    
+        <menuitem name="Tabungan" id="siswa_tab_ocb11.tabungan_menu" parent="siswa_tab_ocb11.tabungan_master_menu" sequence="1" />
+        <menuitem name="Operations" id="siswa_tab_ocb11.submenu_tabungan_operations" parent="siswa_tab_ocb11.tabungan_master_menu" sequence="3" />
+        <menuitem name="Reports" id="siswa_tab_ocb11.submenu_tabungan_reports" parent="siswa_tab_ocb11.tabungan_master_menu" sequence="4" />
+        
+        <!-- actions master -->    
+        <!-- <menuitem name="Siswa" id="siswa_tab_ocb11.menu_siswa" parent="siswa_tab_ocb11.tabungan_menu" action="siswa_tab_ocb11.biaya_action_window" sequence="1"/> -->
+        
+        <!-- actions operations -->            
+        <menuitem name="Setoran/Tarik Tunai" id="siswa_tab_ocb11.action_tabungan_menu" parent="siswa_tab_ocb11.submenu_tabungan_operations" action="siswa_tab_ocb11.tabungan_action_window" sequence="1"/>
+        
+        <!-- actions reports -->            
+        <!-- <menuitem name="tabungan" id="siswa_tab_ocb11.menu_report_kas" parent="siswa_tab_ocb11.submenu_tabungan_reports" action="siswa_tab_ocb11.wizard_report_kas" sequence="1"/> -->
+        
+
+    </data>
+</odoo>
