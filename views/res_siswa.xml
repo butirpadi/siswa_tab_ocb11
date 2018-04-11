@@ -1,7 +1,7 @@
 <odoo>
     <data>
         <record id="siswa_tab_ocb11.siswa_form" model="ir.ui.view" >
-            <field name="name">siswa_ocb11.siswa_form</field>
+            <field name="name">siswa_tab_ocb11.siswa_form</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="siswa_ocb11.siswa_form"/>
             <field name="priority" eval="24"/>
