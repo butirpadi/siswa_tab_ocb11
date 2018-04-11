@@ -80,5 +80,7 @@ class tabungan(models.Model):
             'name' : 'DRAFT/'+self.name,
             'state' : 'draft'
         })
+        # update saldo siswa
+        self.update_saldo_siswa()
 
     
