@@ -27,6 +27,8 @@
         'data/ir_sequence_data.xml',
         'views/tabungan.xml',
         'views/res_siswa.xml',
+        'views/wizard_report_tabungan.xml',
+        'report/report_tabungan_template.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

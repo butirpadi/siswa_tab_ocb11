@@ -1,0 +1,53 @@
+<odoo>
+    <data>
+
+        <record id="siswa_tab_ocb11.wizard_report_tabungan_form" model="ir.ui.view">
+            <field name="name">wizard.siswa_tab_ocb11.report_tabungan</field>
+            <field name="model">siswa_tab_ocb11.wizard_report_tabungan</field>
+            <field name="arch" type="xml">
+                <form string="Wizard Report Tabungan" class="o_sale_order" create="false">
+                    <sheet>
+                        <div class="oe_title oe_read_only">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="awal"  />                    
+                                <field name="siswa_id"  />                    
+                            </group>
+                            <group>
+                                <field name="akhir" /> 
+                            </group>
+                        </group>
+                        <footer class="oe_edit_only" >
+                            <button name="action_save" type="object"
+                                string="Print" class="oe_highlight"/>
+                                
+                            <button special="cancel" string="Cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="siswa_tab_ocb11.wizard_report_tabungan_action"
+            name="Report Tabungan"
+            src_model="siswa_tab_ocb11.tabungan"
+            res_model="siswa_tab_ocb11.wizard_report_tabungan"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"/>
+
+        <!-- menu categories -->    
+        <menuitem name="Reports" id="siswa_tab_ocb11.submenu_tabungan_reports" 
+                parent="siswa_tab_ocb11.tabungan_master_menu" sequence="4" />
+
+        <!-- actions operations -->            
+        <menuitem name="Tabungan" id="siswa_tab_ocb11.action_report_tabungan" 
+                parent="siswa_tab_ocb11.submenu_tabungan_reports" 
+                action="siswa_tab_ocb11.wizard_report_tabungan_action" sequence="1"/>
+
+    </data>
+</odoo>

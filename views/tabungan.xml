@@ -1,6 +1,21 @@
 <odoo>
     <data>
 
+        <!-- Search View -->
+        <record id="siswa_tab_ocb11.view_tabungan_filter" model="ir.ui.view">
+            <field name="name">tabungan.list.select</field>
+            <field name="model">siswa_tab_ocb11.tabungan</field>
+            <field name="sequence">16</field>
+            <field name="arch" type="xml">
+                <search string="Search Tabungan">
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_siswa" string="Siswa" domain="[]" context="{'group_by':'siswa_id'}"/>
+                        <!-- <filter name="group_by_rombel" string="Rombongan Belajar" domain="[]" context="{'group_by':'active_rombel_id'}"/> -->
+                    </group>
+                </search>
+            </field>
+        </record>
+
         <!-- explicit list view definition -->    
         <record model="ir.ui.view" id="siswa_tab_ocb11.tabungan_list">
             <field name="name">siswa_tab_ocb11_tabungan_list</field>
@@ -91,7 +106,6 @@
         <!-- menu categories -->    
         <menuitem name="Tabungan" id="siswa_tab_ocb11.tabungan_menu" parent="siswa_tab_ocb11.tabungan_master_menu" sequence="1" />
         <menuitem name="Operations" id="siswa_tab_ocb11.submenu_tabungan_operations" parent="siswa_tab_ocb11.tabungan_master_menu" sequence="3" />
-        <menuitem name="Reports" id="siswa_tab_ocb11.submenu_tabungan_reports" parent="siswa_tab_ocb11.tabungan_master_menu" sequence="4" />
         
         <!-- actions master -->    
         <!-- <menuitem name="Siswa" id="siswa_tab_ocb11.menu_siswa" parent="siswa_tab_ocb11.tabungan_menu" action="siswa_tab_ocb11.biaya_action_window" sequence="1"/> -->

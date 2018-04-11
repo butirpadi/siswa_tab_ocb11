@@ -1,0 +1,157 @@
+<odoo>
+    <data>
+        <template id="report_tabungan">
+            <t t-call="web.html_container">            
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <style>
+                                table.table{
+                                    border-left:none!important;
+                                    border-right:none!important;
+                                }
+
+                                table.table tbody tr td {
+                                    border-right:none!important;
+                                    padding-top:0;
+                                    padding-bottom:0;
+                                    background-color:transparent!important;
+                                }
+                            </style>
+
+                            <div class="row" >
+                                <div class="col-xs-12 text-center" >
+                                    <h3>REKAPITULASI TRANSAKSI TABUNGAN</h3>
+                                    <strong >Periode :</strong> <span t-field="o.awal" /> - <span t-field="o.akhir" />
+                                </div>
+                                <br/><p>.</p>
+                                <div class="col-xs-12" >                                
+                                    <table class="table" style="border:none;" >
+                                        <tbody>
+                                            <tr>
+                                                <td class="col-xs-2" >
+                                                    <strong>Siswa</strong>
+                                                </td>
+                                                <td style="width:10px;" >:</td>
+                                                <td>
+                                                    <t t-esc="o.siswa_id.name" />
+                                                </td>
+                                                <td class="col-xs-2">
+                                                    <strong>Nomor Induk</strong>
+                                                </td>
+                                                <td style="width:10px;" >:</td>
+                                                <td>
+                                                    <t t-esc="o.siswa_id.induk"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Rombongan Belajar</strong>
+                                                </td>
+                                                <td>:</td>
+                                                <td>
+                                                    <t t-esc="o.siswa_id.active_rombel_id.name"/>
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td></td>
+                                                <td>
+                                                    
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br/><p>.</p>
+                                <div class="col-xs-12" >                                
+                                    <table class="table"  >
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-8" >Tanggal</th>
+                                                <th class="col-xs-8 text-right" >Jumlah</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="o.tabungan_ids" t-as="tab">
+                                                <tr>
+                                                    <td>
+                                                        <span t-field="tab.tanggal" t-field-options='{"format": "dd/MM/y"}' />
+                                                    </td>
+                                                    <td class="text-right" >
+                                                        <t t-if="tab.jumlah &lt; 0">(</t>
+                                                        <t t-esc="'{0:,.2f}'.format(tab.jumlah)" />
+                                                        <t t-if="tab.jumlah &lt; 0">)</t>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td class="text-right" >
+                                                    <strong>TOTAL</strong>
+                                                </td>
+                                                <td class="text-right" >
+                                                    <strong>
+                                                        <t t-if="o.saldo_current &lt; 0">(</t>
+                                                        <t t-esc="'{0:,.2f}'.format(o.saldo_current)" />
+                                                        <t t-if="o.saldo_current &lt; 0">)</t>
+                                                    </strong>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <br/><p>.</p>
+                               <div class="col-xs-8">.</div>
+                                <div class="col-xs-2">
+                                    <strong>Saldo Begining</strong>
+                                </div>
+                                <div class="col-xs-2 text-right">
+                                    <t t-if="o.saldo_begining &lt; 0">(</t>
+                                        <t t-esc="'{0:,.2f}'.format(abs(o.saldo_begining))" />
+                                    <t t-if="o.saldo_begining &lt; 0">)</t>
+                                </div>
+
+                                <div class="col-xs-8">.</div>
+                                <div class="col-xs-2">
+                                    <strong>Saldo Ending</strong>
+                                </div>
+                                <div class="col-xs-2 text-right">
+                                    <t t-if="o.saldo_ending &lt; 0">(</t>
+                                        <t t-esc="'{0:,.2f}'.format(abs(o.saldo_ending))" />
+                                    <t t-if="o.saldo_ending &lt; 0">)</t>
+                                </div>
+
+                                <div class="col-xs-8">.</div>
+                                <div class="col-xs-2">
+                                    <strong>TOTAL SALDO</strong>
+                                </div>
+                                <div class="col-xs-2 text-right" style="border-top:solid thin black;" >
+                                    <t t-set="total_saldo" t-value="o.saldo_begining + o.saldo_current + o.saldo_ending"/>
+                                    <t t-if="total_saldo  &lt; 0">(</t>
+                                        <strong><t t-esc="'{0:,.2f}'.format(abs(total_saldo))" /></strong>
+                                    <t t-if="total_saldo &lt; 0">)</t>
+                                </div>
+
+                                <br/><p>.</p>
+                            </div>                        
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <report
+            id="report_tabungan_action"
+            model="siswa_tab_ocb11.wizard_report_tabungan"
+            string="Report Kas"
+            report_type="qweb-html"
+            name="siswa_tab_ocb11.report_tabungan"
+            file="siswa_tab_ocb11.report_tabungan"
+            attachment_use="False"
+            print_report_name="'Tabungan-%s' % (object.siswa_id.induk+object.siswa_id.name)"
+            menu="False"
+        />
+    </data>
+</odoo>
