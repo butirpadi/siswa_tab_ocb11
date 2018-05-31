@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <!-- Menu -->
+        <!-- Top menu item -->
+        <menuitem name="Tabungan" id="siswa_tab_ocb11.tabungan_master_menu" sequence="3" />
+        
+        <!-- menu categories -->    
+        <menuitem name="Dashboard" id="siswa_tab_ocb11.menu_dashboard_tabungan" parent="siswa_tab_ocb11.tabungan_master_menu" sequence="1" action="siswa_tab_ocb11.dashboard_tabungan_view_action" />
+        <menuitem name="Tabungan" id="siswa_tab_ocb11.tabungan_menu" parent="siswa_tab_ocb11.tabungan_master_menu" sequence="2" />
+        <menuitem name="Operations" id="siswa_tab_ocb11.submenu_tabungan_operations" parent="siswa_tab_ocb11.tabungan_master_menu" sequence="3" />
+        <menuitem name="Dashboard Manager" id="siswa_tab_ocb11.menu_dashboard_tabungan_manager" parent="siswa_tab_ocb11.tabungan_master_menu" action="siswa_tab_ocb11.dashboard_tabungan_view_manager_action" sequence="10" />
+                
+        <!-- actions operations -->            
+        <menuitem name="Setoran/Tarik Tunai" id="siswa_tab_ocb11.action_tabungan_menu" parent="siswa_tab_ocb11.submenu_tabungan_operations" action="siswa_tab_ocb11.tabungan_action_window" sequence="1"/>
+
+        <!-- menu categories -->    
+        <menuitem name="Reports" id="siswa_tab_ocb11.submenu_tabungan_reports" 
+                parent="siswa_tab_ocb11.tabungan_master_menu" sequence="4" />
+
+        <!-- actions operations -->            
+        <menuitem name="Tabungan" id="siswa_tab_ocb11.action_report_tabungan" 
+                parent="siswa_tab_ocb11.submenu_tabungan_reports" 
+                action="siswa_tab_ocb11.wizard_report_tabungan_action" sequence="1"/>
+       
+    </data>
+</odoo>

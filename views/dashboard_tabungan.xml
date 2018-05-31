@@ -1,0 +1,95 @@
+<odoo>
+    <data>
+        <record id="view_dashboard_tabungan_kanban_form" model="ir.ui.view">
+            <field name="name">tabungan.dashboard.ocb11.kanban</field>
+            <field name="model">siswa_tab_ocb11.dashboard_tabungan</field>
+            <field name="arch" type="xml">
+                <kanban
+                    class="oe_background_grey o_kanban_dashboard o_emphasize_colors o_stock_kanban"
+                    create="0">
+                    <field name="color"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="#{kanban_color(record.color.raw_value)}">
+                                <div>
+                                    <div t-attf-class="o_kanban_card_header">
+                                        <div class="o_kanban_card_header_title">
+                                            <div class="o_primary">
+                                                <field name="name"/>
+                                            </div>
+                                            <div class="o_secondary">
+                                                <field class="o_secondary" name="subtitle"/>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_manage_button_section">
+                                            <a class="o_kanban_manage_toggle_button" href="#"><i class="fa fa-ellipsis-v"/></a>
+                                        </div>
+                                    </div>
+                                    <div class="container o_kanban_card_content">
+                                        <div class="row">
+                                            <div class="col-xs-12 text-right" >
+                                                <h3 style="font-size:24pt;" ><field name="saldo" /></h3>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="container o_kanban_card_manage_pane">
+                                        <div class="row">
+                                            <div class="col-xs-6 o_kanban_card_manage_section o_kanban_manage_view">
+                                                <div class="o_kanban_card_manage_title">
+                                                    <label>Set Color</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
+                                            <div class="col-xs-12">
+                                                <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record
+            model="ir.actions.act_window"
+            id="siswa_tab_ocb11.dashboard_tabungan_view_action">
+            <field name="name">Dashboard</field>
+            <field name="res_model">siswa_tab_ocb11.dashboard_tabungan</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban</field>
+            <field name="form_view_id" ref="siswa_tab_ocb11.view_dashboard_tabungan_kanban_form"/>
+        </record>
+
+        <!-- Dashboard Manager -->
+        <record model="ir.ui.view" id="siswa_tab_ocb11.dashboard_tabungan_view_manager_list">
+            <field name="name">siswa_tab_ocb11_dashboard_tabungan_manager_list</field>
+            <field name="model">siswa_tab_ocb11.dashboard_tabungan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="tahunajaran_id"/>
+                    <field name="rombel_id"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record
+            model="ir.actions.act_window"
+            id="siswa_tab_ocb11.dashboard_tabungan_view_manager_action">
+            <field name="name">Tabungan Dashboard Manager</field>
+            <field name="res_model">siswa_tab_ocb11.dashboard_tabungan</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree, form</field>
+            <field name="tree_view_id" ref="siswa_tab_ocb11.dashboard_tabungan_view_manager_list" />
+            <field name="context">{'active_test': False}</field>
+        </record>
+
+    </data>
+</odoo>

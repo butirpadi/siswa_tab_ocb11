@@ -25,10 +25,13 @@
     'data': [
         # 'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
+        'data/ir_default_data.xml',
         'views/tabungan.xml',
         'views/res_siswa.xml',
+        'views/dashboard_tabungan.xml',
         'views/wizard_report_tabungan.xml',
         'report/report_tabungan_template.xml',
+        'views/menu.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

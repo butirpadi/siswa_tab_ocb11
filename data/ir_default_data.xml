@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="default_dashboard_tabungan" model="siswa_tab_ocb11.dashboard_tabungan">
+            <field name="name">Tabungan</field>
+            <field name="subtitle">Total Saldo</field>
+            <field name="active">True</field>
+            <field name="color">10</field>
+        </record>
+
+    </data>
+</odoo>

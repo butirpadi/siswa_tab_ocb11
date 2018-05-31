@@ -14,7 +14,8 @@ class tabungan(models.Model):
     induk = fields.Char(string='Induk', related='siswa_id.induk')
     active_rombel_id = fields.Many2one('siswa_ocb11.rombel', related='siswa_id.active_rombel_id', string='Rombongan Belajar')
     tanggal = fields.Date(string='Tanggal', required=True, default=datetime.today())
-    jumlah = fields.Float(string='Jumlah', required=True)
+    jumlah = fields.Float(string='Jumlah', required=True, default=0)
+    jumlah_temp = fields.Float(string='Jumlah', required=True, default=0)
     jenis = fields.Selection([('setor', 'Setoran'), ('tarik', 'Tarik Tunai')], string='Jenis', required=True, default='setor')
     confirm_ids = fields.One2many('siswa_tab_ocb11.action_confirm', inverse_name="tabungan_id")
 
@@ -27,23 +28,23 @@ class tabungan(models.Model):
             # else:
             #     vals['name'] = 'DRAFT-' self.env['ir.sequence'].next_by_code('tabungan.siswa.tab.ocb11') or _('New')
         if vals['jenis'] == 'tarik' :
-            vals['jumlah'] = -vals['jumlah']
+            vals['jumlah_temp'] = -vals['jumlah_temp']
         result = super(tabungan, self).create(vals)
         return result
     
     @api.multi
     def write(self, values):
         self.ensure_one()
-        if 'jumlah' in values:
+        if 'jumlah_temp' in values:
             if 'jenis' in values:
                 if values['jenis'] == 'tarik':
-                    values['jumlah'] = -values['jumlah']
+                    values['jumlah_temp'] = -values['jumlah_temp']
             else:
                 if self.jenis == 'tarik':
-                    values['jumlah'] = -values['jumlah']
+                    values['jumlah_temp'] = -values['jumlah_temp']
         else:
             if self.jenis == 'tarik':
-                values['jumlah'] = -self.jumlah
+                values['jumlah_temp'] = -self.jumlah_temp
 
         result = super(tabungan, self).write(values)
         self.update_saldo_siswa()
@@ -64,12 +65,24 @@ class tabungan(models.Model):
         # update name to database
         self.write({
             'name' : name_seq,
+            'jumlah' : self.jumlah_temp,
             'state' : 'post'
         })
         self.confirm_ids = (0,0,{
             'name' : name_seq
         })
         self.update_saldo_siswa()
+
+        # update compute tabungan
+        self.update_saldo_tabungan_dashboard()
+    
+    def update_saldo_tabungan_dashboard(self):
+        # dash_tab_id = self.env['ir.model.data'].search([('name','=','default_dashboard_tabungan')]).res_id
+        # dash_tab = self.env['siswa_tab_ocb11.dashboard_tabungan'].search([('id','=',dash_tab_id)])
+        
+        dash_tab = self.env['siswa_tab_ocb11.dashboard_tabungan'].search([('id','ilike','%')])
+        for dash in dash_tab:
+            dash.compute_saldo_tabungan()  
     
     def action_cancel(self):
         self.ensure_one()
@@ -78,9 +91,13 @@ class tabungan(models.Model):
         # update name to database
         self.write({
             'name' : 'DRAFT/'+self.name,
-            'state' : 'draft'
+            'state' : 'draft',
+            'jumlah' : 0
         })
         # update saldo siswa
         self.update_saldo_siswa()
+
+        # update compute tabungan
+        self.update_saldo_tabungan_dashboard()
 
     
