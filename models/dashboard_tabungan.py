@@ -11,8 +11,8 @@ class dashboard_tabungan(models.Model):
     color = fields.Integer(string='Color Index') 
     name = fields.Char('Name')
     subtitle = fields.Char('Subtitle')
-    rombel_id = fields.Many2one('siswa_ocb11.rombel', string='Rombongan Belajar')
-    tahunajaran_id = fields.Many2one('siswa_ocb11.tahunajaran', string='Tahun Ajaran')
+    rombel_id = fields.Many2one('siswa_ocb11.rombel', string='Rombongan Belajar', ondelete="cascade")
+    tahunajaran_id = fields.Many2one('siswa_ocb11.tahunajaran', string='Tahun Ajaran', ondelete="cascade")
     saldo = fields.Float('Saldo', default=0.00)
     active = fields.Boolean(default=False)
 
