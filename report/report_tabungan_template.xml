@@ -3,7 +3,7 @@
         <template id="report_tabungan">
             <t t-call="web.html_container">            
                 <t t-foreach="docs" t-as="o">
-                    <t t-call="web.external_layout">
+                    <t t-call="web.basic_layout">
                         <div class="page">
                             <style>
                                 table.table{
@@ -68,16 +68,32 @@
                                     <table class="table"  >
                                         <thead>
                                             <tr>
-                                                <th class="col-xs-8" >Tanggal</th>
-                                                <th class="col-xs-8 text-right" >Jumlah</th>
+                                                <th class="" >Tanggal</th>
+                                                <t t-if="not o.siswa_id">
+                                                    <th class="" >Siswa</th>
+                                                    <th class="" >No. Induk</th>
+                                                    <th class="" >Rombel</th>
+                                                </t>
+                                                <th class="text-right" >Jumlah</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <t t-foreach="o.tabungan_ids" t-as="tab">
+                                            <t t-foreach="o.tabungan_ids.sorted(key=lambda x: x.tanggal)" t-as="tab">
                                                 <tr>
                                                     <td>
                                                         <span t-field="tab.tanggal" t-field-options='{"format": "dd/MM/y"}' />
                                                     </td>
+                                                    <t t-if="not o.siswa_id">
+                                                        <td>
+                                                            <span t-field="tab.siswa_id.name" />
+                                                        </td>
+                                                        <td>
+                                                            <span t-field="tab.siswa_id.induk" />
+                                                        </td>
+                                                        <td>
+                                                            <span t-field="tab.siswa_id.active_rombel_id.name" />
+                                                        </td>
+                                                    </t>
                                                     <td class="text-right" >
                                                         <t t-if="tab.jumlah &lt; 0">(</t>
                                                         <t t-esc="'{0:,.2f}'.format(tab.jumlah)" />
@@ -152,6 +168,7 @@
             attachment_use="False"
             print_report_name="'Tabungan-%s' % (object.siswa_id.induk+object.siswa_id.name)"
             menu="False"
+            paperformat="siswa_ocb11.format_report_general"
         />
     </data>
 </odoo>

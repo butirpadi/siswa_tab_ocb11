@@ -15,10 +15,11 @@
                         <group>
                             <group>
                                 <field name="awal"  />                    
-                                <field name="siswa_id" options="{'no_create_edit': True,'no_open':True}" />                    
+                                <field name="siswa_id" domain="[('is_siswa','=',True)]" options="{'no_create':True, 'no_edit':True,'no_create_edit': True,'no_open':True}" />                    
                             </group>
                             <group>
                                 <field name="akhir" /> 
+                                <field name="tipe" /> 
                             </group>
                         </group>
                         <footer class="oe_edit_only" >
