@@ -61,7 +61,7 @@
                 <form string="tabungan" class="o_sale_order">
                     <header>
                         <button name="action_confirm" string="Confirm" type="object" class="btn btn-primary" attrs="{'invisible':['|',('state', '=', 'post'),('name', '=', 'New')]}" />
-                        <button confirm="Are you sure you want to do this?" name="action_cancel" string="Cancel" type="object" class="btn oe_edit_only" attrs="{'invisible':['|',('state', '=', 'draft'),('name', '=', 'New')]}" />
+                        <button confirm="Are you sure you want to do this?" name="action_cancel" string="Reset" type="object" class="btn oe_edit_only" attrs="{'invisible':['|',('state', '=', 'draft'),('name', '=', 'New')]}" groups="siswa_tab_ocb11.siswa_tab_group_admin" />
                         <field name="state" widget="statusbar" statusbar_visible="draft,post"  />
                     </header>
                     <sheet>
