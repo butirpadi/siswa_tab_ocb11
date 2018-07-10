@@ -10,6 +10,7 @@
                 <search string="Search Tabungan">
                     <group expand="0" string="Group By">
                         <filter name="group_by_siswa" string="Siswa" domain="[]" context="{'group_by':'siswa_id'}"/>
+                        <filter name="group_by_state" string="Status" domain="[]" context="{'group_by':'state'}"/>
                         <!-- <filter name="group_by_rombel" string="Rombongan Belajar" domain="[]" context="{'group_by':'active_rombel_id'}"/> -->
                     </group>
                 </search>
@@ -28,6 +29,7 @@
                     <field name="siswa_id" />
                     <field name="jenis" />
                     <field name="jumlah" sum="Saldo"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>
@@ -78,8 +80,9 @@
                                 <field name="active_rombel_id" />
                             </group>
                             <group>
-                                <field name="jenis" attrs="{'readonly':[('name', '!=', 'New')]}" />                        
-                                <field name="jumlah_temp" attrs="{'readonly':[('state', '=', 'post')]}" />                        
+                                <field name="saldo_tabungan" attrs="{'invisible':[('name', '!=', 'New')]}" />
+                                <field name="jenis" attrs="{'readonly':['|',('name', '!=', 'New'),('saldo_tabungan', '=', 0)]}" /> 
+                                <field name="jumlah_temp" attrs="{'readonly':[('state', '=', 'post')]}" />
                             </group>
                         </group>
                     </sheet>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api, _
+from odoo import models, fields, api, exceptions, _
 from pprint import pprint
 from datetime import datetime, date
 
@@ -12,6 +12,7 @@ class tabungan(models.Model):
     state = fields.Selection([('draft', 'Draft'), ('post', 'Posted')], string='State', required=True, default='draft')
     siswa_id = fields.Many2one('res.partner',string="Siswa", required=True)
     induk = fields.Char(string='Induk', related='siswa_id.induk')
+    saldo_tabungan = fields.Float('Saldo Tabungan', compute="_compute_get_saldo", store=True)
     active_rombel_id = fields.Many2one('siswa_ocb11.rombel', related='siswa_id.active_rombel_id', string='Rombongan Belajar')
     tanggal = fields.Date(string='Tanggal', required=True, default=datetime.today())
     jumlah = fields.Float(string='Jumlah', required=True, default=0)
@@ -19,18 +20,40 @@ class tabungan(models.Model):
     jenis = fields.Selection([('setor', 'Setoran'), ('tarik', 'Tarik Tunai')], string='Jenis', required=True, default='setor')
     confirm_ids = fields.One2many('siswa_tab_ocb11.action_confirm', inverse_name="tabungan_id")
 
+    @api.depends('siswa_id')
+    def _compute_get_saldo(self):
+        for rec in self:
+            rec.saldo_tabungan = rec.siswa_id.saldo_tabungan
+
     @api.model
     def create(self, vals):
-        if vals.get('name', _('New')) == _('New'):
-            vals['name'] = 'DRAFT/TAB/'+str(datetime.today().strftime('%d%m%y/%H%M%S'))
-            # if 'company_id' in vals:
-            #     vals['name'] = 'DRAFT-' + self.env['ir.sequence'].with_context(force_company=vals['company_id']).next_by_code('tabungan.siswa.tab.ocb11') or _('New')
-            # else:
-            #     vals['name'] = 'DRAFT-' self.env['ir.sequence'].next_by_code('tabungan.siswa.tab.ocb11') or _('New')
-        if vals['jenis'] == 'tarik' :
-            vals['jumlah_temp'] = -vals['jumlah_temp']
-        result = super(tabungan, self).create(vals)
-        return result
+        # # cek saldo siswa
+        siswa = self.env['res.partner'].search([('id','=',vals['siswa_id'])])
+
+        can_draw = True
+        if siswa.saldo_tabungan == 0:
+            vals['jenis'] = 'setor'
+        else:
+            if vals['jenis'] == 'tarik':
+                if siswa.saldo_tabungan < vals['jumlah_temp']:
+                    can_draw = False
+
+        if can_draw:
+            if vals.get('name', _('New')) == _('New'):
+                vals['name'] = 'DRAFT/TAB/'+str(datetime.today().strftime('%d%m%y/%H%M%S'))
+
+            if vals['jenis'] == 'tarik' :
+                vals['jumlah_temp'] = -vals['jumlah_temp']
+            result = super(tabungan, self).create(vals)
+            return result
+
+        else:
+            print('Gagal Simpan Tabungan')
+            # return {'warning': {
+            #             'title': _('Warning'),
+            #             'message': _('Saldo tabungan tidak mencukupi.')
+            #             }}
+            raise exceptions.except_orm(_('Warning'), _('Saldo tabungan tidak mencukupi.'))
     
     @api.multi
     def write(self, values):

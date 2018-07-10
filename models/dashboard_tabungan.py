@@ -27,21 +27,28 @@ class dashboard_tabungan(models.Model):
             siswa_ids = []
             for rbs in rombel_siswa_ids:
                 siswa_ids.append(rbs.siswa_id.id)
-            # get saldo per rombel
-            setoran_list = self.env['siswa_tab_ocb11.tabungan'].search([
-                ('siswa_id','in',siswa_ids),
-                ('state','=','post'),
-                ('jenis','=','setor'),
-            ])
-            setoran = sum(setoran_list.mapped('jumlah'))
+                
+            # # get saldo per rombel
+            # setoran_list = self.env['siswa_tab_ocb11.tabungan'].search([
+            #     ('siswa_id','in',siswa_ids),
+            #     ('state','=','post'),
+            #     ('jenis','=','setor'),
+            # ])
+            # setoran = sum(setoran_list.mapped('jumlah'))
 
-            tarik_list = self.env['siswa_tab_ocb11.tabungan'].search([
+            # tarik_list = self.env['siswa_tab_ocb11.tabungan'].search([
+            #     ('siswa_id','in',siswa_ids),
+            #     ('state','=','post'),
+            #     ('jenis','=','tarik'),
+            # ])
+            # tarikan = sum(tarik_list.mapped('jumlah'))
+            # saldo = setoran - tarikan
+
+            tabungan_list = self.env['siswa_tab_ocb11.tabungan'].search([
                 ('siswa_id','in',siswa_ids),
-                ('state','=','post'),
-                ('jenis','=','tarik'),
+                ('state','=','post')
             ])
-            tarikan = sum(tarik_list.mapped('jumlah'))
-            saldo = setoran - tarikan
+            saldo = sum(tabungan_list.mapped('jumlah'))
         else:
             print('Compute Saldo Tabungan')
             self.env.cr.execute("select coalesce(sum(coalesce(jumlah,0)),0) from siswa_tab_ocb11_tabungan where state = 'post' ")
