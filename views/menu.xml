@@ -23,9 +23,13 @@
                 parent="siswa_tab_ocb11.tabungan_master_menu" sequence="4" />
 
         <!-- actions operations -->            
-        <menuitem name="Tabungan" id="siswa_tab_ocb11.action_report_tabungan" 
+        <menuitem name="Riwayat Tabungan" id="siswa_tab_ocb11.action_report_tabungan" 
                 parent="siswa_tab_ocb11.submenu_tabungan_reports" 
                 action="siswa_tab_ocb11.wizard_report_tabungan_action" sequence="1"/>
+        
+        <!-- <menuitem name="Saldo Tabungan" id="siswa_tab_ocb11.action_report_saldo_tabungan" 
+                parent="siswa_tab_ocb11.submenu_tabungan_reports" 
+                action="siswa_tab_ocb11.wizard_report_saldo_tabungan_action" sequence="2"/> -->
        
     </data>
 </odoo>

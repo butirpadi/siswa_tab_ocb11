@@ -58,51 +58,76 @@
                             </style>
 
                             <div class="row" >
-                                <div class="col-xs-12 text-center" >
-                                    <h3>REKAPITULASI TRANSAKSI TABUNGAN</h3>
-                                    <strong >Periode :</strong> <span t-field="o.awal" /> - <span t-field="o.akhir" />
+                                <div class="col-xs-6" >
+                                    <strong><p style="margin-top:0;margin-bottom:0;text-transform:uppercase;font-weight:bolder;" t-esc="user.company_id.name"/></strong>
+                                    <p style="margin-top:0;margin-bottom:0;" ><span t-esc="user.company_id.street" ></span> <span t-esc="user.company_id.street2" ></span></p>
+                                    <p style="margin-top:0;margin-bottom:0;" ><span t-esc="user.company_id.city" ></span> <span t-esc="user.company_id.state_id.name" ></span> <span t-esc="user.company_id.zip" ></span></p>
+                                    <p style="margin-top:0;margin-bottom:0;" >Telp: <span t-esc="user.company_id.phone" ></span></p>
+                                </div>
+                                <div class="col-xs-6 text-right" >
+                                    <h3><strong>RIWAYAT TRANSAKSI TABUNGAN</strong></h3>
+                                </div>
+                                <div class="col-xs-12" >
+                                    <hr style="border-top: 4px double black;" />   
                                 </div>
                                 
-                                <t t-if="o.siswa_id">
-                                    <div class="col-xs-12" >                                
-                                        <table class="table noborder"  >
-                                            <tbody>
-                                                <tr>
-                                                    <td class="col-xs-2" >
-                                                        <strong>Siswa</strong>
-                                                    </td>
-                                                    <td style="width:10px;" >:</td>
-                                                    <td>
-                                                        <t t-esc="o.siswa_id.name" />
-                                                    </td>
-                                                    <td class="col-xs-2">
+                                
+                                <div class="col-xs-12" >                                
+                                    <table class="table noborder"  >
+                                        <tbody>
+                                            <tr>
+                                                <td class="col-xs-2" >
+                                                    <strong>Periode</strong>
+                                                </td>
+                                                <td style="width:10px;" >:</td>
+                                                <td>
+                                                    <span t-field="o.awal" /> - <span t-field="o.akhir" />
+                                                </td>
+                                                <td class="col-xs-2">
+                                                    <t t-if="o.siswa_id">
                                                         <strong>Nomor Induk</strong>
-                                                    </td>
-                                                    <td style="width:10px;" >:</td>
-                                                    <td>
+                                                    </t>
+                                                </td>
+                                                <td style="width:10px;" >
+                                                    <t t-if="o.siswa_id">:</t>
+                                                </td>
+                                                <td>
+                                                    <t t-if="o.siswa_id">
                                                         <t t-esc="o.siswa_id.induk"/>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-xs-2" >
+                                                    <t t-if="o.siswa_id">
+                                                        <strong>Siswa</strong>
+                                                    </t>
+                                                </td>
+                                                <td style="width:10px;" >
+                                                    <t t-if="o.siswa_id">:</t>
+                                                </td>
+                                                <td>
+                                                    <t t-if="o.siswa_id">
+                                                        <t t-esc="o.siswa_id.name" />
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-if="o.siswa_id">
                                                         <strong>Rombongan Belajar</strong>
-                                                    </td>
-                                                    <td>:</td>
-                                                    <td>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-if="o.siswa_id">:</t>
+                                                </td>
+                                                <td>
+                                                    <t t-if="o.siswa_id">
                                                         <t t-esc="o.siswa_id.active_rombel_id.name"/>
-                                                    </td>
-                                                    <td>
-                                                        
-                                                    </td>
-                                                    <td></td>
-                                                    <td>
-                                                        
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </t>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                                 
                                 <br/><![CDATA[&nbsp;]]>
                                 <div class="col-xs-12" >                                
@@ -111,8 +136,9 @@
                                             <tr>
                                                 <th class="" >Tanggal</th>
                                                 <t t-if="not o.siswa_id">
-                                                    <th class="" >No. Induk</th>
+                                                    <th class="" >Ref#</th>
                                                     <th class="" >Siswa</th>
+                                                    <th class="" >No. Induk</th>
                                                     <th class="" >Rombel</th>
                                                 </t>
                                                 <th class="text-right" >Debet</th>
@@ -127,12 +153,15 @@
                                                     <td>
                                                         <span t-field="tab.tanggal" t-field-options='{"format": "dd/MM/y"}' />
                                                     </td>
+                                                    <td>
+                                                        <span t-field="tab.name" />
+                                                    </td>
                                                     <t t-if="not o.siswa_id">
                                                         <td>
-                                                            <span t-field="tab.siswa_id.induk" />
+                                                            <span t-field="tab.siswa_id.name" />
                                                         </td>
                                                         <td>
-                                                            <span t-field="tab.siswa_id.name" />
+                                                            <span t-field="tab.siswa_id.induk" />
                                                         </td>
                                                         <td>
                                                             <span t-field="tab.siswa_id.active_rombel_id.name" />
@@ -140,13 +169,13 @@
                                                     </t>
                                                     <td class="text-right" >
                                                         <t t-if="tab.jenis=='setor'">
-                                                            <t t-esc="'{0:,.2f}'.format(tab.jumlah)" />
-                                                            <t t-set="total_debet" t-value="total_debet+tab.jumlah" />
+                                                            <t t-esc="'{0:,.2f}'.format(tab.jumlah)" t-field-options='{"widget": "monetary"}' />
+                                                            <t t-set="total_debet" t-value="total_debet+tab.jumlah"  />
                                                         </t>
                                                     </td>
                                                     <td class="text-right" >
                                                         <t t-if="tab.jenis=='tarik'">
-                                                            (<t t-esc="'{0:,.2f}'.format(tab.jumlah)" />)
+                                                            (<t t-esc="'{0:,.2f}'.format(abs(tab.jumlah))" t-field-options='{"widget": "monetary"}' />)
                                                             <t t-set="total_kredit" t-value="total_kredit+tab.jumlah" />
                                                         </t>
                                                     </td>
@@ -155,14 +184,14 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <td class="text-right" colspan="4" >
+                                                <td class="text-right" colspan="5" >
                                                     <strong>TOTAL</strong>
                                                 </td>
                                                 <td class="text-right" >
                                                     <t t-esc="'{0:,.2f}'.format(total_debet)" />
                                                 </td>
                                                 <td class="text-right" >
-                                                    <t t-esc="'{0:,.2f}'.format(total_kredit)" />
+                                                    (<t t-esc="'{0:,.2f}'.format(abs(total_kredit))" />)
                                                 </td>
                                                 <!-- <td class="text-right" >
                                                     <strong>
@@ -176,7 +205,7 @@
                                     </table>
                                 </div>
                                 <br/><![CDATA[&nbsp;]]>
-                               <div class="col-xs-8">.</div>
+                               <!-- <div class="col-xs-8">.</div>
                                 <div class="col-xs-2">
                                     <strong>Saldo Begining</strong>
                                 </div>
@@ -205,7 +234,7 @@
                                     <t t-if="total_saldo  &lt; 0">(</t>
                                         <strong><t t-esc="'{0:,.2f}'.format(abs(total_saldo))" /></strong>
                                     <t t-if="total_saldo &lt; 0">)</t>
-                                </div>
+                                </div> -->
 
                                 <br/><![CDATA[&nbsp;]]>
                             </div>                        

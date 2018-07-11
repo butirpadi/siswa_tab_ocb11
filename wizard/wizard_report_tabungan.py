@@ -13,7 +13,7 @@ class wizard_report_tabungan(models.TransientModel):
     saldo_begining = fields.Float('Saldo Begining', default=0)
     saldo_ending = fields.Float('Saldo Ending', default=0)
     saldo_current = fields.Float('Saldo Current', default=0)
-    tipe = fields.Selection([('sum', 'Summary'), ('det', 'Detail')], required=True, default='sum')
+    tipe = fields.Selection([('sum', 'Summary'), ('det', 'Detail')], required=True, default='det')
 
     def action_save(self):
         self.ensure_one()
@@ -25,7 +25,7 @@ class wizard_report_tabungan(models.TransientModel):
                 siswa = 'True'
 
             print('get data tabungan')
-            self.env.cr.execute("select * from siswa_tab_ocb11_tabungan where tanggal >= '%s' and tanggal <= '%s' and %s" % (self.awal, self.akhir, siswa) )
+            self.env.cr.execute("select * from siswa_tab_ocb11_tabungan where state = 'post' and tanggal >= '%s' and tanggal <= '%s' and %s" % (self.awal, self.akhir, siswa) )
             tabs = self.env.cr.dictfetchall()
 
             # # tabs = self.env['siswa_tab_ocb11.tabungan'].search([('tanggal','>=',self.awal),('tanggal','<=',self.akhir), siswa])
