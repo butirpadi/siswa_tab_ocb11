@@ -14,7 +14,9 @@
                         context="{'search_default_categ_id': active_id}"
                         attrs="{'invisible':[('induk', '=', 'New')]}" >
                         <div class="o_field_widget o_stat_info">
-                            <span class="o_stat_value"><field name="saldo_tabungan"/></span>
+                            <span class="o_stat_value">
+                                <field name="saldo_tabungan" readonly="1" />
+                            </span>
                             <span class="o_stat_text">Tabungan</span>
                         </div>
                     </button>
