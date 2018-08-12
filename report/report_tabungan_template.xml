@@ -58,13 +58,13 @@
                             </style>
 
                             <div class="row" >
-                                <div class="col-xs-6" >
+                                <!-- <div class="col-xs-6" >
                                     <strong><p style="margin-top:0;margin-bottom:0;text-transform:uppercase;font-weight:bolder;" t-esc="user.company_id.name"/></strong>
                                     <p style="margin-top:0;margin-bottom:0;" ><span t-esc="user.company_id.street" ></span> <span t-esc="user.company_id.street2" ></span></p>
                                     <p style="margin-top:0;margin-bottom:0;" ><span t-esc="user.company_id.city" ></span> <span t-esc="user.company_id.state_id.name" ></span> <span t-esc="user.company_id.zip" ></span></p>
                                     <p style="margin-top:0;margin-bottom:0;" >Telp: <span t-esc="user.company_id.phone" ></span></p>
-                                </div>
-                                <div class="col-xs-6 text-right" >
+                                </div> -->
+                                <div class="col-xs-12 text-center" >
                                     <h3><strong>RIWAYAT TRANSAKSI TABUNGAN</strong></h3>
                                 </div>
                                 <div class="col-xs-12" >

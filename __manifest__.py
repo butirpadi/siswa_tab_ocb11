@@ -33,6 +33,8 @@
         'views/wizard_report_tabungan.xml',
         'views/wizard_saldo_tabungan.xml',
         'report/report_tabungan_template.xml',
+        'report/report_saldo_tabungan.xml',
+        'report/report_saldo_tabungan_detail.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode

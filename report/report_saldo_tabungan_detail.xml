@@ -1,0 +1,95 @@
+<odoo>
+    <data>
+
+        <report
+            id="report_saldo_tabungan_detail_action"
+            model="siswa_tab_ocb11.wizard_saldo_tabungan"
+            string="Saldo Tabungan"
+            report_type="qweb-html"
+            name="siswa_tab_ocb11.report_saldo_tabungan_detail"
+            file="siswa_tab_ocb11.report_saldo_tabungan_detail"
+            attachment_use="False"
+            print_report_name="'ReportSaldoTabunganDetail'"
+            menu="False"
+            paperformat="siswa_ocb11.format_report_general"
+        />
+
+        <template id="report_saldo_tabungan_detail">
+            <t t-call="web.html_container">            
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+                            <style>
+                                table.table{
+                                    border-left:none!important;
+                                    border-right:none!important;
+                                    background-color:transparent!important;
+                                }
+
+                                table.table tbody tr td {
+                                    border-right:none!important;
+                                    padding-top:0;
+                                    padding-bottom:0;
+                                    background-color:transparent!important;
+                                }
+                            </style>
+
+                            <div class="row" >
+
+                                <div class="col-xs-12 text-center" >
+                                    <h3><strong>SALDO TABUNGAN</strong></h3>
+                                </div>
+
+                                <div class="col-xs-12" >  
+                                    <hr style="border-top: 4px double black;" />
+                                    <table class="table table-condensed" >
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" >No</th>
+                                                <th >Rombongan Belajar</th>
+                                                <th class="text-right" >Saldo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-set="row_num" t-value="1" />
+                                            <t t-set="total_saldo" t-value="0" />
+                                            <t t-foreach="o.saldo_rombel_ids" t-as="cs">
+                                                <tr>
+                                                    <td class="text-center" >
+                                                        <t t-esc="row_num" />
+                                                        <t t-set="row_num" t-value="row_num+1" />
+                                                    </td>
+                                                    <td  >
+                                                        <span t-field="cs.rombel_id.name" />                                                        
+                                                    </td>
+                                                    <td class="text-right" >
+                                                        <span t-field="cs.saldo" />
+                                                    </td>
+                                                    <t t-set="total_saldo" t-value="total_saldo + cs.saldo" />
+                                                </tr>                                                
+                                            </t>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="2" class="text-center" >
+                                                    <strong>TOTAL</strong>
+                                                </td>
+                                                <td class="text-right" >
+                                                    <strong>
+                                                        <t t-esc="'{0:,.2f}'.format(total_saldo)" />
+                                                    </strong>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+
+                            </div>                        
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

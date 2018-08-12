@@ -14,17 +14,27 @@
                         </div>
                         <group>
                             <group>
-                                <field name="awal"  />                    
-                                <field name="rombel_id" 
-                                    options="{'no_create':True, 'no_edit':True,'no_create_edit': True,'no_open':True}" />                    
+                                <field name="tanggal"  />                    
+                                <field name="report_type"  />                    
                             </group>
                             <group>
-                                <field name="akhir" /> 
-                            </group>
+                                <field name="rombel_ids" widget="many2many_tags" 
+                                    options="{'no_create':True, 'no_edit':True,'no_create_edit': True,'no_open':True}" />                    
+                            </group> 
                         </group>
+                        <notebook invisible="1">
+                            <page name="saldo" string="Saldo Tabungan">
+                                <field name="saldo_rombel_ids">
+                                    <tree>
+                                        <field name="rombel_id" />
+                                        <field name="saldo" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
                         <footer class="oe_edit_only" >
                             <button name="action_save" type="object"
-                                string="Print" class="oe_highlight"/>
+                                string="Save" class="oe_highlight"/>
                                 
                             <button special="cancel" string="Cancel"/>
                         </footer>
