@@ -8,6 +8,9 @@
             <field name="sequence">16</field>
             <field name="arch" type="xml">
                 <search string="Search Tabungan">
+                    <filter string="Draft" name="state" domain="[('state','=','draft')]"/>
+                    <filter string="Posted" name="state" domain="[('state','=','post')]"/>
+                    
                     <group expand="0" string="Group By">
                         <filter name="group_by_siswa" string="Siswa" domain="[]" context="{'group_by':'siswa_id'}"/>
                         <filter name="group_by_state" string="Status" domain="[]" context="{'group_by':'state'}"/>
