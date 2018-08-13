@@ -64,7 +64,8 @@
                                                         <span t-field="cs.rombel_id.name" />                                                        
                                                     </td>
                                                     <td class="text-right" >
-                                                        <span t-field="cs.saldo" />
+                                                        <!-- <span t-field="cs.saldo" /> -->
+                                                        <t t-esc="'{0:,.2f}'.format(cs.saldo)" />
                                                     </td>
                                                     <t t-set="total_saldo" t-value="total_saldo + cs.saldo" />
                                                 </tr>                                                

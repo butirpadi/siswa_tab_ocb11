@@ -15,7 +15,7 @@ class wizard_saldo_tabungan(models.TransientModel):
     # akhir = fields.Date('Periode Akhir', default=datetime.today(), required=True)
     # tabungan_ids = fields.Many2many('siswa_tab_ocb11.tabungan', relation='siswa_tab_ocb11_wizard_report_report_tabungan_rel', column1='report_id',column2='tabungan_id', string="Data Tabungan")
     # siswa_id = fields.Many2one('res.partner', string='Siswa')
-    tabungan_ids = fields.Many2many('siswa_tab_ocb11.tabungan', relation='siswa_tab_ocb11_wizard_report_report_tabungan_rel', column1='wizard_id',column2='tabungan_id', string="Data Tabungan")
+    # tabungan_ids = fields.Many2many('siswa_tab_ocb11.tabungan', relation='siswa_tab_ocb11_wizard_report_report_tabungan_rel', column1='wizard_id',column2='tabungan_id', string="Data Tabungan")
     # saldo_begining = fields.Float('Saldo Begining', default=0)
     # saldo_ending = fields.Float('Saldo Ending', default=0)
     
@@ -28,6 +28,8 @@ class wizard_saldo_tabungan(models.TransientModel):
         # jika rombel di pilih dalam selection
         if self.rombel_ids:
             my_rombel_ids = self.rombel_ids
+        else:
+            self.rombel_ids = my_rombel_ids
 
         for rb in my_rombel_ids:
             rombel_siswa_ids = self.env['siswa_ocb11.rombel_siswa'].search([
