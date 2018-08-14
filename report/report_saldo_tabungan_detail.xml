@@ -113,6 +113,9 @@
 
                             </div>                        
                         </div>
+                        <div class="footer" >
+                            <span>Page </span><span class="page" /> of <span class="topage" />
+                        </div>
                     </t>
                 </t>
             </t>
