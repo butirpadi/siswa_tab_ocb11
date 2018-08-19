@@ -32,18 +32,30 @@
                                     padding-bottom:0;
                                     background-color:transparent!important;
                                 }
+
+                                table.table-data thead tr th{
+                                    border-top: thin solid black !important;
+                                    border-bottom: thin solid black !important;
+                                }
+
+                                tr.table-footer td{
+                                    border-top: thin solid black !important;
+                                    border-bottom: thin solid black !important;
+                                    font-weight: bold;
+                                }
                             </style>
 
                             <div class="row" >
 
-                                <div class="col-xs-12 text-center" >
-                                    <h3><strong>SALDO TABUNGAN</strong></h3>
-                                    <span t-field="o.tahunajaran_id.name" />
-                                </div>
+                                <div class="col-xs-12" >
+                                    <div class="text-center" >
+                                        <h3><strong>SALDO TABUNGAN</strong></h3>
+                                        <span t-field="o.tahunajaran_id.name" />
+                                    </div>
 
-                                <div class="col-xs-12" >  
-                                    <hr style="border-top: 4px double black;" />
-                                    <table class="table table-condensed" >
+                                    <br/><![CDATA[&nbsp;]]>
+
+                                    <table class="table table-condensed table-data " >
                                         <thead>
                                             <tr>
                                                 <th class="text-center" >No</th>
@@ -70,9 +82,8 @@
                                                     <t t-set="total_saldo" t-value="total_saldo + cs.saldo" />
                                                 </tr>                                                
                                             </t>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
+
+                                            <tr class="table-footer" >
                                                 <td colspan="2" class="text-center" >
                                                     <strong>TOTAL</strong>
                                                 </td>
@@ -82,7 +93,7 @@
                                                     </strong>
                                                 </td>
                                             </tr>
-                                        </tfoot>
+                                        </tbody>
                                     </table>
                                 </div>
 
