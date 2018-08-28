@@ -19,6 +19,7 @@ class tabungan(models.Model):
     jumlah_temp = fields.Float(string='Jumlah', required=True, default=0)
     jenis = fields.Selection([('setor', 'Setoran'), ('tarik', 'Tarik Tunai')], string='Jenis', required=True, default='setor')
     confirm_ids = fields.One2many('siswa_tab_ocb11.action_confirm', inverse_name="tabungan_id")
+    desc = fields.Char('Keterangan')
 
     @api.depends('siswa_id')
     def _compute_get_saldo(self):
