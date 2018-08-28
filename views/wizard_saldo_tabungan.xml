@@ -5,7 +5,7 @@
             <field name="name">wizard.siswa_tab_ocb11.report_tabungan</field>
             <field name="model">siswa_tab_ocb11.wizard_saldo_tabungan</field>
             <field name="arch" type="xml">
-                <form string="Wizard Report Saldo Tabungan" class="o_sale_order" create="false">
+                <form duplicate="0" string="Wizard Report Saldo Tabungan" class="o_sale_order" create="false">
                     <sheet>
                         <div class="oe_title oe_read_only">
                             <h1>
