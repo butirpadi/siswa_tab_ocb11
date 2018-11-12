@@ -1,4 +1,4 @@
-<odoo>
+<flectra>
     <data>
         <!-- Menu -->
         <!-- Top menu item -->
@@ -32,4 +32,4 @@
                 action="siswa_tab_ocb11.wizard_report_saldo_tabungan_action" sequence="2"/>
        
     </data>
-</odoo>
+</flectra>

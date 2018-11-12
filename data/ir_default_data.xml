@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
+<flectra>
     <data noupdate="1">
 
         <record id="default_dashboard_tabungan" model="siswa_tab_ocb11.dashboard_tabungan">
@@ -10,4 +10,4 @@
         </record>
 
     </data>
-</odoo>
+</flectra>

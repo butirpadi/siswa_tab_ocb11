@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api, exceptions, _
-from odoo.addons import decimal_precision as dp
+from flectra import models, fields, api, exceptions, _
+from flectra.addons import decimal_precision as dp
 from datetime import datetime
 from pprint import pprint
 
@@ -54,4 +54,4 @@ class dashboard_tabungan(models.Model):
             self.env.cr.execute("select coalesce(sum(coalesce(jumlah,0)),0) from siswa_tab_ocb11_tabungan where state = 'post' ")
             saldo = self.env.cr.fetchone()[0]        
 
-        self.saldo = saldo
+        self.saldo = saldo 

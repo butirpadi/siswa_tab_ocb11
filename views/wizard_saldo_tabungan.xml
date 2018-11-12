@@ -1,4 +1,4 @@
-<odoo>
+<flectra>
     <data>
 
         <record id="siswa_tab_ocb11.wizard_saldo_tabungan_form" model="ir.ui.view">
@@ -54,4 +54,4 @@
         
 
     </data>
-</odoo>
+</flectra>

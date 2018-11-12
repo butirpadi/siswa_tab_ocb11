@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api, exceptions, _
+from flectra import models, fields, api, exceptions, _
 from pprint import pprint
 from datetime import datetime, date
 
@@ -124,4 +124,4 @@ class tabungan(models.Model):
         # update compute tabungan
         self.update_saldo_tabungan_dashboard()
 
-    
+     

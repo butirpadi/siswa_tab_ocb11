@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api, exceptions 
+from flectra import models, fields, api, exceptions 
 from pprint import pprint
 
 class rombel(models.Model):
@@ -32,4 +32,4 @@ class rombel(models.Model):
 
         result = super(rombel, self).write(vals)        
         
-        return result
+        return result 
