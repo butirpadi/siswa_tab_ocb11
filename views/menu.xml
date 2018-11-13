@@ -1,35 +1,54 @@
 <flectra>
-    <data>
-        <!-- Menu -->
-        <!-- Top menu item -->
-        <menuitem name="Tabungan" id="siswa_tab_ocb11.tabungan_master_menu" sequence="3" />
-        
-        <!-- menu categories -->    
-        <menuitem name="Dashboard" id="siswa_tab_ocb11.menu_dashboard_tabungan" parent="siswa_tab_ocb11.tabungan_master_menu" sequence="1" action="siswa_tab_ocb11.dashboard_tabungan_view_action" />
-        <menuitem name="Tabungan" id="siswa_tab_ocb11.tabungan_menu" parent="siswa_tab_ocb11.tabungan_master_menu" sequence="2" />
-        <menuitem name="Operations" id="siswa_tab_ocb11.submenu_tabungan_operations" parent="siswa_tab_ocb11.tabungan_master_menu" sequence="3" />
-                
-        <menuitem name="Configurations" id="siswa_tab_ocb11.menu_configuration" parent="siswa_tab_ocb11.tabungan_master_menu" 
-                sequence="10" groups="base.group_system" />
-        <menuitem name="Dashboard Manager" id="siswa_tab_ocb11.menu_dashboard_tabungan_manager" 
-                parent="siswa_tab_ocb11.menu_configuration" action="siswa_tab_ocb11.dashboard_tabungan_view_manager_action" 
-                sequence="11" />
-                
-        <!-- actions operations -->            
-        <menuitem name="Setoran/Tarik Tunai" id="siswa_tab_ocb11.action_tabungan_menu" parent="siswa_tab_ocb11.submenu_tabungan_operations" action="siswa_tab_ocb11.tabungan_action_window" sequence="1"/>
+	<data>
+		<!-- Menu -->
+		<!-- Top menu item -->
+		<menuitem name="Tabungan"
+			id="siswa_tab_ocb11.tabungan_master_menu" sequence="3"
+			web_icon="siswa_tab_ocb11,static/description/icon.png" />
 
-        <!-- menu categories -->    
-        <menuitem name="Reports" id="siswa_tab_ocb11.submenu_tabungan_reports" 
-                parent="siswa_tab_ocb11.tabungan_master_menu" sequence="4" />
+		<!-- menu categories -->
+		<menuitem name="Dashboard"
+			id="siswa_tab_ocb11.menu_dashboard_tabungan"
+			parent="siswa_tab_ocb11.tabungan_master_menu" sequence="1"
+			action="siswa_tab_ocb11.dashboard_tabungan_view_action" />
+		<menuitem name="Tabungan" id="siswa_tab_ocb11.tabungan_menu"
+			parent="siswa_tab_ocb11.tabungan_master_menu" sequence="2" />
+		<menuitem name="Operations"
+			id="siswa_tab_ocb11.submenu_tabungan_operations"
+			parent="siswa_tab_ocb11.tabungan_master_menu" sequence="3" />
 
-        <!-- actions reports -->            
-        <menuitem name="Riwayat Tabungan" id="siswa_tab_ocb11.action_report_tabungan" 
-                parent="siswa_tab_ocb11.submenu_tabungan_reports" 
-                action="siswa_tab_ocb11.wizard_report_tabungan_action" sequence="1"/>
-        
-        <menuitem name="Saldo Tabungan" id="siswa_tab_ocb11.action_report_saldo_tabungan_menu_item" 
-                parent="siswa_tab_ocb11.submenu_tabungan_reports" 
-                action="siswa_tab_ocb11.wizard_report_saldo_tabungan_action" sequence="2"/>
-       
-    </data>
+		<menuitem name="Configurations"
+			id="siswa_tab_ocb11.menu_configuration"
+			parent="siswa_tab_ocb11.tabungan_master_menu" sequence="10"
+			groups="base.group_system" />
+		<menuitem name="Dashboard Manager"
+			id="siswa_tab_ocb11.menu_dashboard_tabungan_manager"
+			parent="siswa_tab_ocb11.menu_configuration"
+			action="siswa_tab_ocb11.dashboard_tabungan_view_manager_action"
+			sequence="11" />
+
+		<!-- actions operations -->
+		<menuitem name="Setoran/Tarik Tunai"
+			id="siswa_tab_ocb11.action_tabungan_menu"
+			parent="siswa_tab_ocb11.submenu_tabungan_operations"
+			action="siswa_tab_ocb11.tabungan_action_window" sequence="1" />
+
+		<!-- menu categories -->
+		<menuitem name="Reports"
+			id="siswa_tab_ocb11.submenu_tabungan_reports"
+			parent="siswa_tab_ocb11.tabungan_master_menu" sequence="4" />
+
+		<!-- actions reports -->
+		<menuitem name="Riwayat Tabungan"
+			id="siswa_tab_ocb11.action_report_tabungan"
+			parent="siswa_tab_ocb11.submenu_tabungan_reports"
+			action="siswa_tab_ocb11.wizard_report_tabungan_action" sequence="1" />
+
+		<menuitem name="Saldo Tabungan"
+			id="siswa_tab_ocb11.action_report_saldo_tabungan_menu_item"
+			parent="siswa_tab_ocb11.submenu_tabungan_reports"
+			action="siswa_tab_ocb11.wizard_report_saldo_tabungan_action"
+			sequence="2" />
+
+	</data>
 </flectra>
